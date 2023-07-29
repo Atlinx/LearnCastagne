@@ -12,10 +12,10 @@ def GRAPHICS_Spritesheet_3DPixelsize int() = 100000
 def GRAPHICS_Spritesheet_OriginX int() = 64
 def GRAPHICS_Spritesheet_OriginY int() = 28
 
-def GRAPHICS_Spritesheet_Path str() = res://characters/cogs_fighter/spritesheet.png
+def GRAPHICS_Spritesheet_Path str() = res://game/characters/cogs_fighter/spritesheet.png
 
-def GRAPHICS_Spritesheet_NbX int() = 3
-def GRAPHICS_Spritesheet_NbY int() = 3
+def GRAPHICS_Spritesheet_NbX int() = 4
+def GRAPHICS_Spritesheet_NbY int() = 4
 
 var animFrame int() = 0
 internal _StateFrameID
@@ -66,6 +66,10 @@ F6-8:
 	Sprite(4)
 	Hitbox(0, 11000, 18000, 7000)
 endif
+:AnimAirborne:
+CallParent(AnimAirborne)
+
+Sprite(12)
 :AnimCrouching:
 CallParent(AnimCrouching)
 
@@ -75,6 +79,18 @@ VanimFrame<=30:
 else
 	Sprite(1)
 endif
+:AnimJumpB:
+CallParent(AnimJumpB)
+
+Sprite(12)
+:AnimJumpF:
+CallParent(AnimJumpF)
+
+Sprite(12)
+:AnimJumpN:
+CallParent(AnimJumpN)
+
+Sprite(12)
 :AnimStand:
 CallParent(AnimStand)
 
@@ -88,17 +104,25 @@ endif
 CallParent(AnimWalkB)
 
 Mod(_StateFrameID, 30, animFrame)
-VanimFrame<=15:
-	Sprite(2)
+VanimFrame<=10:
+	Sprite(9)
 else
-	Sprite(3)
+	VanimFrame <= 20:
+		Sprite(10)
+	else
+		Sprite(11)
+	endif
 endif
 :AnimWalkF:
 CallParent(AnimWalkF)
 
 Mod(_StateFrameID, 30, animFrame)
-VanimFrame<=15:
-	Sprite(2)
+VanimFrame<=10:
+	Sprite(9)
 else
-	Sprite(3)
+	VanimFrame <= 20:
+		Sprite(10)
+	else
+		Sprite(11)
+	endif
 endif
