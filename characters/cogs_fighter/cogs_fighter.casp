@@ -46,8 +46,14 @@ endif
 F25-40:
 	Sprite(8)
 endif
-:5L:
-AttackRegister(Light)
+
+F30:
+	V_AttackHasHit:
+		Transition(Stand)
+	endif
+endif
+:5P:
+AttackRegister(Light, 6P)
 
 AttackDamage(1000)
 AttackDuration(30)
