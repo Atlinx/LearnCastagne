@@ -12,7 +12,7 @@ def GRAPHICS_Spritesheet_3DPixelsize int() = 100000
 def GRAPHICS_Spritesheet_OriginX int() = 64
 def GRAPHICS_Spritesheet_OriginY int() = 28
 
-def GRAPHICS_Spritesheet_Path str() = res://game/characters/cogs_fighter/spritesheet.png
+def GRAPHICS_Spritesheet_Path str() = res://game/characters/cogs_fighter/spritesheet_thick.png
 
 def GRAPHICS_Spritesheet_NbX int() = 4
 def GRAPHICS_Spritesheet_NbY int() = 4
@@ -53,10 +53,10 @@ F30:
 	endif
 endif
 :5P:
-AttackRegister(Light, 6P)
+AttackRegister(Light, 5P)
 
 AttackDamage(1000)
-AttackDuration(30)
+AttackDuration(20)
 
 F1-6:
 	Sprite(3)
@@ -66,10 +66,26 @@ F6-8:
 	Sprite(4)
 	Hitbox(0, 11000, 18000, 7000)
 endif
+:5Throw:
+# This will also initialize an attack, so you only need to put down a hitbox.
+AttackRegister(Throw)
+
+# This is your total animation time when whiffing.
+AttackDuration(30)
+AttackDamage(1000)
+
+F1-8:
+	Sprite(7)
+endif
+
+# This is the hitbox that throws.
+F8-10:
+    Hitbox(0, 10000, 0, 20000)
+endif
 :AnimAirborne:
 CallParent(AnimAirborne)
 
-Sprite(12)
+Sprite(13)
 :AnimCrouching:
 CallParent(AnimCrouching)
 
@@ -79,6 +95,10 @@ VanimFrame<=30:
 else
 	Sprite(1)
 endif
+:AnimHitstun:
+CallParent(AnimHitstun)
+
+Sprite(13)
 :AnimJumpB:
 CallParent(AnimJumpB)
 
@@ -91,6 +111,10 @@ Sprite(12)
 CallParent(AnimJumpN)
 
 Sprite(12)
+:AnimKnockdown:
+CallParent(AnimKnockdown)
+
+Sprite(14)
 :AnimStand:
 CallParent(AnimStand)
 
@@ -103,24 +127,24 @@ endif
 :AnimWalkB:
 CallParent(AnimWalkB)
 
-Mod(_StateFrameID, 30, animFrame)
-VanimFrame<=10:
-	Sprite(9)
+Mod(_StateFrameID, 24, animFrame)
+VanimFrame<=8:
+	Sprite(11)
 else
-	VanimFrame <= 20:
+	VanimFrame<=16:
 		Sprite(10)
 	else
-		Sprite(11)
+		Sprite(9)
 	endif
 endif
 :AnimWalkF:
 CallParent(AnimWalkF)
 
-Mod(_StateFrameID, 30, animFrame)
-VanimFrame<=10:
+Mod(_StateFrameID, 24, animFrame)
+VanimFrame<=8:
 	Sprite(9)
 else
-	VanimFrame <= 20:
+	VanimFrame<=16:
 		Sprite(10)
 	else
 		Sprite(11)
