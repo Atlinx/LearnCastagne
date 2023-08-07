@@ -3,7 +3,6 @@
 ## You can also add another file to this with the Skeleton: property.
 
 Name: Cogs Fighter
-
 EditorName: Cogs Fighter
 :Variables:
 def GRAPHICS_UseSprites bool() = 1
@@ -20,8 +19,7 @@ def GRAPHICS_Spritesheet_NbY int() = 4
 var animFrame int() = 0
 internal _StateFrameID
 :236H:
-AttackRegister(Heavy)
-AttackAddNotation(236H)
+AttackRegister(Heavy, 236H)
 
 AttackDamage(2000)
 AttackDuration(40)
@@ -40,7 +38,7 @@ endif
 
 F15-25:
 	Sprite(7)
-	Hitbox(0, 11000, 18000, 7000)
+	Hitbox(0, 12000, 18000, 7000)
 endif
 
 F25-40:
